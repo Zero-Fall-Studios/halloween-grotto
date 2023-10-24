@@ -41,6 +41,6 @@ jobs:
         with:
           butlerApiKey: ${{ secrets.BUTLER_KEY }}
           gameData: ./build/win/win.zip
-          itchUsername: uppon-hill
-          itchGameId: though-i-walk
+          itchUsername: ${{ secrets.ITCH_USER_NAME }}
+          itchGameId: ${{ secrets.ITCH_GAME_ID }}
           buildChannel: windows
