@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bqpqm5was4v8c"]
+
+[ext_resource type="Texture2D" uid="uid://doikul6yubt8o" path="res://assets/img/potion.png" id="1_inbls"]
+
+[node name="Potion" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_inbls")
