@@ -35,12 +35,3 @@ jobs:
           itchUsername: ${{ secrets.ITCH_USER_NAME }}
           itchGameId: ${{ secrets.ITCH_GAME_ID }}
           buildChannel: html5
-
-      # - name: Upload windows build to itch
-      #   uses: KikimoraGames/itch-publish@v0.0.3
-      #   with:
-      #     butlerApiKey: ${{ secrets.BUTLER_KEY }}
-      #     gameData: ./build/win/win.zip
-      #     itchUsername: ${{ secrets.ITCH_USER_NAME }}
-      #     itchGameId: ${{ secrets.ITCH_GAME_ID }}
-      #     buildChannel: windows
