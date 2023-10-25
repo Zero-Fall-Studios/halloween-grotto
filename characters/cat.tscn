@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://d4k6gllbk7wlb"]
+
+[ext_resource type="Texture2D" uid="uid://d2y7sbqnb6s3r" path="res://assets/characters/cat-Sheet.png" id="1_smgog"]
+
+[node name="Cat" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_smgog")
+hframes = 14

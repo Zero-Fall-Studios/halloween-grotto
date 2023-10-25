@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://l5mxed45d74m"]
 
-[ext_resource type="Texture2D" uid="uid://vrjboyqog36x" path="res://assets/img/grave-stone.png" id="1_wdcbc"]
+[ext_resource type="Texture2D" uid="uid://vrjboyqog36x" path="res://assets/environment/grave-stone.png" id="1_wdcbc"]
 
 [node name="GraveStone" type="Node2D"]
 

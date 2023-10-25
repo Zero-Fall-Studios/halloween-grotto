@@ -1,8 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://b6rajq83qvico"]
-
-[ext_resource type="Texture2D" uid="uid://8y1ir1mwnn7h" path="res://assets/img/cauldron.png" id="1_8gmee"]
-
-[node name="Cauldron" type="Node2D"]
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_8gmee")

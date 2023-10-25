@@ -1,9 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://ukdcwx813vks"]
-
-[ext_resource type="Texture2D" uid="uid://d2y7sbqnb6s3r" path="res://assets/img/cat-Sheet.png" id="1_3glib"]
-
-[node name="Player" type="Node2D"]
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_3glib")
-hframes = 14

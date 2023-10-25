@@ -1,14 +1,21 @@
-[gd_scene load_steps=10 format=3 uid="uid://viaayn3vqe5i"]
+[gd_scene load_steps=17 format=3 uid="uid://ccxw8hky8x4cy"]
 
-[ext_resource type="Texture2D" uid="uid://hbtyw4bj4h6x" path="res://assets/tilemap/Background.png" id="1_qehn5"]
-[ext_resource type="Texture2D" uid="uid://3cybsbuwwthm" path="res://assets/tilemap/level-1-tiles.png" id="2_0aub1"]
-[ext_resource type="PackedScene" uid="uid://ukdcwx813vks" path="res://characters/hank.tscn" id="6_gp87k"]
-[ext_resource type="Texture2D" uid="uid://caoluybvpk8yd" path="res://assets/ui/Logo.png" id="14_wlhh0"]
-[ext_resource type="Theme" uid="uid://y0b8mwiojt3f" path="res://dark_theme.tres" id="15_6ol77"]
-[ext_resource type="Material" uid="uid://e07jsdfvvi5q" path="res://materials/fog_shader_material.tres" id="16_vown4"]
+[ext_resource type="Texture2D" uid="uid://hbtyw4bj4h6x" path="res://assets/tilemap/Background.png" id="1_pul5n"]
+[ext_resource type="Texture2D" uid="uid://3cybsbuwwthm" path="res://assets/tilemap/level-1-tiles.png" id="2_ovt0j"]
+[ext_resource type="Texture2D" uid="uid://caoluybvpk8yd" path="res://assets/ui/Logo.png" id="3_uki0b"]
+[ext_resource type="Theme" uid="uid://y0b8mwiojt3f" path="res://dark_theme.tres" id="4_r8mlq"]
+[ext_resource type="Material" uid="uid://e07jsdfvvi5q" path="res://materials/fog_shader_material.tres" id="5_ndwru"]
+[ext_resource type="PackedScene" uid="uid://ukdcwx813vks" path="res://characters/hank.tscn" id="6_x425y"]
+[ext_resource type="PackedScene" uid="uid://div33f1eoiytw" path="res://characters/bat.tscn" id="7_tmfsn"]
+[ext_resource type="PackedScene" uid="uid://d4k6gllbk7wlb" path="res://characters/cat.tscn" id="8_5pesa"]
+[ext_resource type="PackedScene" uid="uid://d2t7hnwd4u8yl" path="res://characters/eye.tscn" id="9_qowo1"]
+[ext_resource type="PackedScene" uid="uid://l5mxed45d74m" path="res://environment/grave_stone.tscn" id="10_pbgkk"]
+[ext_resource type="PackedScene" uid="uid://brttt4kprgou6" path="res://environment/pumpkin.tscn" id="11_1a00f"]
+[ext_resource type="PackedScene" uid="uid://ctuuro3t8ije7" path="res://environment/skull.tscn" id="12_nhx5r"]
+[ext_resource type="PackedScene" uid="uid://dn3bb3he0ynv4" path="res://characters/spider.tscn" id="13_cu2t6"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cfjtc"]
-texture = ExtResource("2_0aub1")
+texture = ExtResource("2_ovt0j")
 0:0/0 = 0
 0:0/0/terrain_set = 0
 0:0/0/terrain = 0
@@ -404,11 +411,11 @@ glow_intensity = 3.16
 glow_strength = 0.94
 glow_bloom = 0.35
 
-[node name="Main" type="Node2D"]
+[node name="Title" type="Node2D"]
 
 [node name="Background" type="Sprite2D" parent="."]
 position = Vector2(77, 7)
-texture = ExtResource("1_qehn5")
+texture = ExtResource("1_pul5n")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_kpsu1")
@@ -417,7 +424,7 @@ layer_0/tile_data = PackedInt32Array(262144, 655360, 0, 327680, 589824, 2, 32768
 
 [node name="Logo" type="Sprite2D" parent="."]
 position = Vector2(78, 21)
-texture = ExtResource("14_wlhh0")
+texture = ExtResource("3_uki0b")
 
 [node name="Button" type="Button" parent="."]
 modulate = Color(2, 1, 1, 1)
@@ -425,12 +432,11 @@ offset_left = 129.0
 offset_top = 5.0
 offset_right = 166.0
 offset_bottom = 23.0
-theme = ExtResource("15_6ol77")
+theme = ExtResource("4_r8mlq")
 text = "Play"
 
 [node name="ColorRect" type="ColorRect" parent="."]
-visible = false
-material = ExtResource("16_vown4")
+material = ExtResource("5_ndwru")
 offset_left = -96.0
 offset_top = -93.0
 offset_right = 239.0
@@ -439,7 +445,7 @@ offset_bottom = 107.0
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_uteyb")
 
-[node name="Hank" parent="." instance=ExtResource("6_gp87k")]
+[node name="Hank" parent="." instance=ExtResource("6_x425y")]
 position = Vector2(63, 48)
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Hank"]
@@ -448,3 +454,24 @@ remote_path = NodePath("../../Camera2D")
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(63, 48)
 offset = Vector2(0, -35)
+
+[node name="Bat" parent="." instance=ExtResource("7_tmfsn")]
+position = Vector2(-55, -40)
+
+[node name="Cat" parent="." instance=ExtResource("8_5pesa")]
+position = Vector2(158, 56)
+
+[node name="Eye" parent="." instance=ExtResource("9_qowo1")]
+position = Vector2(16, -17)
+
+[node name="GraveStone" parent="." instance=ExtResource("10_pbgkk")]
+position = Vector2(-41, 56)
+
+[node name="Pumpkin" parent="." instance=ExtResource("11_1a00f")]
+position = Vector2(0, 56)
+
+[node name="Skull" parent="." instance=ExtResource("12_nhx5r")]
+position = Vector2(28, 56)
+
+[node name="Spider" parent="." instance=ExtResource("13_cu2t6")]
+position = Vector2(186, -43)

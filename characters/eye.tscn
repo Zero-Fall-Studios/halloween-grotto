@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://d2t7hnwd4u8yl"]
 
-[ext_resource type="Texture2D" uid="uid://bgkh8o7uxwnmt" path="res://assets/img/eye.png" id="1_ridjh"]
+[ext_resource type="Texture2D" uid="uid://bgkh8o7uxwnmt" path="res://assets/powerups/eye.png" id="1_ridjh"]
 
 [node name="Eye" type="Node2D"]
 

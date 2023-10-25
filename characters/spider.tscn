@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dn3bb3he0ynv4"]
 
-[ext_resource type="Texture2D" uid="uid://ttwo4olwci5i" path="res://assets/img/spider.png" id="1_uyy1q"]
+[ext_resource type="Texture2D" uid="uid://ttwo4olwci5i" path="res://assets/characters/spider.png" id="1_uyy1q"]
 
 [node name="Spider" type="Node2D"]
 
