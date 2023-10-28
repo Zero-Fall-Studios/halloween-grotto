@@ -1,10 +1,15 @@
 class_name State
 extends Node
 
-var parent : Player
+@export var animation_name: String
+@export var move_speed: float = 400
+
+var gravity: int = ProjectSettings.get_setting("physics/2d/default_gravity")
+
+var parent
 
 func enter() -> void:
-	pass
+	parent.animation_player.play(animation_name)
 
 func exit() -> void:
 	pass

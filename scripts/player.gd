@@ -6,9 +6,8 @@ extends CharacterBody2D
 @onready var sprite = $Sprite2D
 
 func _ready():
-#	hide()
+	hide()
 	state_machine.init(self)
-	animation_player.play("run")
 
 func _unhandled_input(event: InputEvent) -> void:
 	state_machine.process_input(event)

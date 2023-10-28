@@ -1,10 +1,15 @@
-[gd_scene load_steps=41 format=3 uid="uid://ukdcwx813vks"]
+[gd_scene load_steps=46 format=3 uid="uid://ukdcwx813vks"]
 
-[ext_resource type="Script" path="res://characters/hank.gd" id="1_736ey"]
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_uby8g"]
 [ext_resource type="Texture2D" uid="uid://dks8lulikotsl" path="res://assets/characters/hank-Sheet.png" id="1_ue30l"]
 [ext_resource type="Script" path="res://state_machine/state_machine.gd" id="3_6pb20"]
 [ext_resource type="Script" path="res://state_machine/states/idle_state.gd" id="4_gu2ug"]
-[ext_resource type="Script" path="res://state_machine/states/move_state.gd" id="5_mgxta"]
+[ext_resource type="Script" path="res://state_machine/states/walk_state.gd" id="5_rwa80"]
+[ext_resource type="Script" path="res://state_machine/states/jump_state.gd" id="6_clibp"]
+[ext_resource type="Script" path="res://state_machine/states/run_state.gd" id="6_gbgsp"]
+[ext_resource type="Script" path="res://state_machine/states/fall_state.gd" id="7_r6mby"]
+[ext_resource type="Script" path="res://state_machine/states/jump_flip_state.gd" id="8_w7jdq"]
+[ext_resource type="Texture2D" uid="uid://eeinidpgpo5u" path="res://assets/environment/LightMask.png" id="10_a8m4d"]
 
 [sub_resource type="Animation" id="Animation_24m7w"]
 length = 0.001
@@ -572,8 +577,8 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_21jvq"]
 size = Vector2(6, 34)
 
-[node name="Hank" type="CharacterBody2D"]
-script = ExtResource("1_736ey")
+[node name="Hank" type="CharacterBody2D" groups=["player"]]
+script = ExtResource("1_uby8g")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_ue30l")
@@ -593,10 +598,53 @@ shape = SubResource("RectangleShape2D_21jvq")
 script = ExtResource("3_6pb20")
 initial_state = NodePath("IdleState")
 
-[node name="IdleState" type="Node" parent="StateMachine" node_paths=PackedStringArray("move_state")]
+[node name="IdleState" type="Node" parent="StateMachine" node_paths=PackedStringArray("fall_state", "jump_state", "walk_state")]
 script = ExtResource("4_gu2ug")
-move_state = NodePath("../MoveState")
+fall_state = NodePath("../FallState")
+jump_state = NodePath("../JumpState")
+walk_state = NodePath("../WalkState")
+animation_name = "idle"
+move_speed = 100.0
 
-[node name="MoveState" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state")]
-script = ExtResource("5_mgxta")
+[node name="WalkState" type="Node" parent="StateMachine" node_paths=PackedStringArray("fall_state", "idle_state", "jump_state", "run_state")]
+script = ExtResource("5_rwa80")
+fall_state = NodePath("../FallState")
 idle_state = NodePath("../IdleState")
+jump_state = NodePath("../JumpState")
+run_state = NodePath("../RunState")
+animation_name = "walk"
+move_speed = 100.0
+
+[node name="RunState" type="Node" parent="StateMachine" node_paths=PackedStringArray("fall_state", "idle_state", "walk_state", "jump_flip_state")]
+script = ExtResource("6_gbgsp")
+fall_state = NodePath("../FallState")
+idle_state = NodePath("../IdleState")
+walk_state = NodePath("../WalkState")
+jump_flip_state = NodePath("../JumpFlipState")
+animation_name = "run"
+
+[node name="JumpState" type="Node" parent="StateMachine" node_paths=PackedStringArray("fall_state", "idle_state", "walk_state")]
+script = ExtResource("6_clibp")
+fall_state = NodePath("../FallState")
+idle_state = NodePath("../IdleState")
+walk_state = NodePath("../WalkState")
+jump_force = 400.0
+animation_name = "jump"
+move_speed = 100.0
+
+[node name="JumpFlipState" type="Node" parent="StateMachine" node_paths=PackedStringArray("fall_state", "idle_state", "walk_state")]
+script = ExtResource("8_w7jdq")
+fall_state = NodePath("../FallState")
+idle_state = NodePath("../IdleState")
+walk_state = NodePath("../WalkState")
+animation_name = "jump_flip"
+
+[node name="FallState" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "walk_state")]
+script = ExtResource("7_r6mby")
+idle_state = NodePath("../IdleState")
+walk_state = NodePath("../WalkState")
+animation_name = "fall"
+move_speed = 100.0
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+texture = ExtResource("10_a8m4d")
