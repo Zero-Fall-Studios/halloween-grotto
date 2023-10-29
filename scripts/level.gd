@@ -1,7 +1,7 @@
 class_name Level
 extends Node
 
-@export var player : Player
+@export var player : Character
 
 var spawn_points
 
@@ -12,4 +12,3 @@ func _ready():
 	var npcs = get_tree().get_nodes_in_group("npc")
 	for npc in npcs:
 		npc.spawn(npc.position)
-

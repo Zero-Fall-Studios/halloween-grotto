@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://div33f1eoiytw"]
 
-[ext_resource type="Script" path="res://scripts/npc.gd" id="1_p1yu8"]
+[ext_resource type="Script" path="res://scripts/character.gd" id="1_axnsa"]
 [ext_resource type="Texture2D" uid="uid://dq05tun10g4ga" path="res://assets/characters/bat-Sheet.png" id="1_r0vw8"]
 [ext_resource type="Script" path="res://state_machine/state_machine.gd" id="3_xjlos"]
 [ext_resource type="Script" path="res://state_machine/states/wander_state.gd" id="4_kvcbk"]
@@ -48,7 +48,7 @@ _data = {
 }
 
 [node name="Bat" type="CharacterBody2D" groups=["npc"]]
-script = ExtResource("1_p1yu8")
+script = ExtResource("1_axnsa")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, 0)

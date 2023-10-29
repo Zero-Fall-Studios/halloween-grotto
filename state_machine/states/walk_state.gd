@@ -9,7 +9,7 @@ extends State
 func process_input(event: InputEvent) -> State:
 	if Input.is_action_just_pressed('jump') and parent.is_on_floor():
 		return jump_state
-	if Input.is_action_just_pressed('run') and parent.is_on_floor() and parent.velocity.x != 0:
+	if Input.is_action_pressed('run') and parent.is_on_floor() and parent.velocity.x != 0:
 		return run_state
 	return null
 

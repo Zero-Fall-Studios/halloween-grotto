@@ -3,6 +3,7 @@ extends State
 
 @export var idle_state: State
 @export var walk_state: State
+@export var run_state: State
 
 func process_physics(delta: float) -> State:
 	parent.velocity.y += gravity * delta
@@ -16,6 +17,9 @@ func process_physics(delta: float) -> State:
 	
 	if parent.is_on_floor():
 		if movement != 0:
-			return walk_state
+			if Input.is_action_pressed('run'):
+				return run_state
+			else:
+				return walk_state
 		return idle_state
 	return null

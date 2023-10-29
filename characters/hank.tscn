@@ -1,6 +1,6 @@
-[gd_scene load_steps=46 format=3 uid="uid://ukdcwx813vks"]
+[gd_scene load_steps=45 format=3 uid="uid://ukdcwx813vks"]
 
-[ext_resource type="Script" path="res://scripts/player.gd" id="1_uby8g"]
+[ext_resource type="Script" path="res://scripts/character.gd" id="1_p0sps"]
 [ext_resource type="Texture2D" uid="uid://dks8lulikotsl" path="res://assets/characters/hank-Sheet.png" id="1_ue30l"]
 [ext_resource type="Script" path="res://state_machine/state_machine.gd" id="3_6pb20"]
 [ext_resource type="Script" path="res://state_machine/states/idle_state.gd" id="4_gu2ug"]
@@ -9,7 +9,6 @@
 [ext_resource type="Script" path="res://state_machine/states/run_state.gd" id="6_gbgsp"]
 [ext_resource type="Script" path="res://state_machine/states/fall_state.gd" id="7_r6mby"]
 [ext_resource type="Script" path="res://state_machine/states/jump_flip_state.gd" id="8_w7jdq"]
-[ext_resource type="Texture2D" uid="uid://eeinidpgpo5u" path="res://assets/environment/LightMask.png" id="10_a8m4d"]
 
 [sub_resource type="Animation" id="Animation_24m7w"]
 length = 0.001
@@ -189,6 +188,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_6le7g"]
 resource_name = "jump_flip"
+length = 0.7
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -578,7 +578,7 @@ _data = {
 size = Vector2(6, 34)
 
 [node name="Hank" type="CharacterBody2D" groups=["player"]]
-script = ExtResource("1_uby8g")
+script = ExtResource("1_p0sps")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_ue30l")
@@ -598,11 +598,12 @@ shape = SubResource("RectangleShape2D_21jvq")
 script = ExtResource("3_6pb20")
 initial_state = NodePath("IdleState")
 
-[node name="IdleState" type="Node" parent="StateMachine" node_paths=PackedStringArray("fall_state", "jump_state", "walk_state")]
+[node name="IdleState" type="Node" parent="StateMachine" node_paths=PackedStringArray("fall_state", "jump_state", "walk_state", "run_state")]
 script = ExtResource("4_gu2ug")
 fall_state = NodePath("../FallState")
 jump_state = NodePath("../JumpState")
 walk_state = NodePath("../WalkState")
+run_state = NodePath("../RunState")
 animation_name = "idle"
 move_speed = 100.0
 
@@ -622,29 +623,32 @@ idle_state = NodePath("../IdleState")
 walk_state = NodePath("../WalkState")
 jump_flip_state = NodePath("../JumpFlipState")
 animation_name = "run"
+move_speed = 200.0
 
-[node name="JumpState" type="Node" parent="StateMachine" node_paths=PackedStringArray("fall_state", "idle_state", "walk_state")]
+[node name="JumpState" type="Node" parent="StateMachine" node_paths=PackedStringArray("fall_state", "idle_state", "walk_state", "run_state")]
 script = ExtResource("6_clibp")
 fall_state = NodePath("../FallState")
 idle_state = NodePath("../IdleState")
 walk_state = NodePath("../WalkState")
+run_state = NodePath("../RunState")
 jump_force = 400.0
 animation_name = "jump"
 move_speed = 100.0
 
-[node name="JumpFlipState" type="Node" parent="StateMachine" node_paths=PackedStringArray("fall_state", "idle_state", "walk_state")]
+[node name="JumpFlipState" type="Node" parent="StateMachine" node_paths=PackedStringArray("fall_state", "idle_state", "walk_state", "run_state")]
 script = ExtResource("8_w7jdq")
 fall_state = NodePath("../FallState")
 idle_state = NodePath("../IdleState")
 walk_state = NodePath("../WalkState")
+run_state = NodePath("../RunState")
+jump_force = 400.0
 animation_name = "jump_flip"
+move_speed = 200.0
 
-[node name="FallState" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "walk_state")]
+[node name="FallState" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "walk_state", "run_state")]
 script = ExtResource("7_r6mby")
 idle_state = NodePath("../IdleState")
 walk_state = NodePath("../WalkState")
+run_state = NodePath("../RunState")
 animation_name = "fall"
 move_speed = 100.0
-
-[node name="PointLight2D" type="PointLight2D" parent="."]
-texture = ExtResource("10_a8m4d")
